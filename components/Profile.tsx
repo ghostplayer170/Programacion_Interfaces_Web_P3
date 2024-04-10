@@ -5,6 +5,24 @@ type Data = {
   profile: Person;
 };
 
+/*
+      {comments.length > 0 && (
+        <div>
+          <strong>Comments:</strong>
+          {comments.map((comment) => <p>{comment.user}: {comment.message}</p>)}
+        </div>
+      )}
+*/
+
+/*
+      {hobbies.length > 0 && (
+        <div>
+          <strong>Hobbies:</strong>
+          {hobbies.map((hobby) => <p>{hobby}</p>)}
+        </div>
+      )}
+*/
+
 const Profiles: FunctionComponent<Data> = ({ profile }) => {
   const { name, age, sex, description, hobbies, comments, photo } = profile;
   return (
@@ -15,12 +33,6 @@ const Profiles: FunctionComponent<Data> = ({ profile }) => {
       <p>{sex}</p>
       <p>{description}</p>
       <p>{hobbies}</p>
-      {comments.length > 0 && (
-        <div>
-          <strong>Comments:</strong>
-          {comments.map((comment) => <p>{comment.user}: {comment.message}</p>)}
-        </div>
-      )}
     </div>
   );
 };

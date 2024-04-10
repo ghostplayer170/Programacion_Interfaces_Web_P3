@@ -4,7 +4,7 @@ export type Person = {
   age: number;
   sex: string;
   description: string;
-  hobbies: string[] | string;
+  hobbies: string[];
   photo: string;
   comments: Comments[];
 };
