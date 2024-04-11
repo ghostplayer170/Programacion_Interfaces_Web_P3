@@ -1,21 +1,16 @@
 import { Handlers } from "$fresh/server.ts";
 
-const generateToken = (username: string, password: string) => {
-  const token = btoa(username + password); // btoa is a function that encodes a string in base-64
-  return token;
-};
-
 export const handler: Handlers = {
   async POST(req: Request) {
-    const { username, password } = await req.json();
-    const url = "https://lovers.deno.dev/";
+    const { name, password } = await req.json();
+    const url = `https://lovers.deno.dev/${name}`;
     try {
       const response = await fetch(url, {
-        method: "POST",
+        method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ password }),
       });
       if (response.status == 401) {
         return new Response(
@@ -31,10 +26,7 @@ export const handler: Handlers = {
         );
       }
       return new Response(
-        JSON.stringify({
-          success: true,
-          token: generateToken(username, password),
-        }),
+        JSON.stringify({ success: true }),
         {
           headers: { "Content-Type": "application/json" },
         },

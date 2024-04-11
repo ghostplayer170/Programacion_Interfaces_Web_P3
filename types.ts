@@ -6,10 +6,21 @@ export type Person = {
   description: string;
   hobbies: string[];
   photo: string;
-  comments: Comments[];
+  comments: comment[];
 };
 
-type Comments = {
+export type User = {
+  name: string;
+  password: string;
+  age: number;
+  sex: string;
+  description: string;
+  hobbies: string[];
+  photo: string;
+  comments: comment[];
+};
+
+export type comment = {
   user: string;
   message: string;
 };

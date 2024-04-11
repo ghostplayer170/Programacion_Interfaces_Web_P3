@@ -4,10 +4,13 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $api_delete from "./routes/api/delete.ts";
 import * as $api_login from "./routes/api/login.ts";
 import * as $api_register from "./routes/api/register.ts";
 import * as $hottinder from "./routes/hottinder.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $user_user_ from "./routes/user/[user].tsx";
+import * as $DeleteProfile from "./islands/DeleteProfile.tsx";
 import * as $FilterProfiles from "./islands/FilterProfiles.tsx";
 import * as $Login from "./islands/Login.tsx";
 import * as $ProfileInfo from "./islands/ProfileInfo.tsx";
@@ -18,12 +21,15 @@ const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/api/delete.ts": $api_delete,
     "./routes/api/login.ts": $api_login,
     "./routes/api/register.ts": $api_register,
     "./routes/hottinder.tsx": $hottinder,
     "./routes/index.tsx": $index,
+    "./routes/user/[user].tsx": $user_user_,
   },
   islands: {
+    "./islands/DeleteProfile.tsx": $DeleteProfile,
     "./islands/FilterProfiles.tsx": $FilterProfiles,
     "./islands/Login.tsx": $Login,
     "./islands/ProfileInfo.tsx": $ProfileInfo,

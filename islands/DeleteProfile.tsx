@@ -1,14 +1,12 @@
-import { useEffect, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import { FunctionComponent } from "preact";
 
-const Login: FunctionComponent = () => {
+const DeleteProfile: FunctionComponent = () => {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
-  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
-
-  const fetchLogin = async () => {
-    const response = await fetch("login", {
+  const [deleteSuccess, setDeleteSuccess] = useState<boolean>(false);
+  const fetchDeleteProfile = async () => {
+    const response = await fetch("/api/delete", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,31 +15,24 @@ const Login: FunctionComponent = () => {
     });
     const data = await response.json();
     if (data.success) {
-      localStorage.setItem("token", data.token);
-      setLoginSuccess(true);
+      setDeleteSuccess(true);
+    } else {
+      setDeleteSuccess(false);
     }
-    setLoginSuccess(false);
   };
 
-  useEffect(() => {
-    if (loginSuccess) {
-      setShowSuccessMessage(true);
-    }
-  }, [loginSuccess]);
-
   const handleCloseSuccessMessage = () => {
-    setShowSuccessMessage(false);
+    setDeleteSuccess(false);
     return new Response("", {
       status: 303,
       headers: {
-        "Location": "hottinder",
+        "Location": "/",
       },
     });
   };
-
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Delete Profile</h1>
       <input
         type="text"
         placeholder="Name"
@@ -52,8 +43,8 @@ const Login: FunctionComponent = () => {
         placeholder="Password"
         onBlur={(e) => setPassword(e.currentTarget.value)}
       />
-      <button onClick={fetchLogin}>Login</button>
-      {loginSuccess && showSuccessMessage && (
+      <button onClick={fetchDeleteProfile}>Delete Profile</button>
+      {deleteSuccess && (
         <dialog open>
           <p>Success</p>
           <button onClick={handleCloseSuccessMessage}>Close</button>
@@ -63,4 +54,4 @@ const Login: FunctionComponent = () => {
   );
 };
 
-export default Login;
+export default DeleteProfile;
