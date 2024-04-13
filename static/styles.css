@@ -135,7 +135,7 @@ body {
 }
 
 .cont-home,
-.cont-login-profile {
+.cont-filter{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -322,3 +322,61 @@ dialog {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
+
+.cont-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 2px solid #ccc; /* Ajuste de ejemplo para la línea debajo del filtro */
+  }
+  
+  /* Ajustes para dispositivos más pequeños */
+  @media (max-width: 768px) {
+    .cont-filter {
+      flex-direction: column;
+      padding: 10px;
+    }
+  
+    .cont-filter input,
+    .cont-filter button {
+      width: 100%;
+      margin: 5px 0; /* Espaciado vertical entre los elementos del formulario */
+    }
+  }
+  
+  /* Ajustes para dispositivos de tamaño medio */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .cont-filter {
+      flex-wrap: wrap;
+    }
+  
+    .cont-filter input,
+    .cont-filter button {
+      flex: 1 1 auto; /* Los elementos se ajustan para llenar el espacio disponible */
+      margin: 5px; /* Espaciado alrededor de los elementos */
+    }
+  }
+  
+  /* Ajustes para dispositivos más grandes no son necesarios si el diseño por defecto ya es adecuado */
+  
+  .cont-filter-profiles{
+    padding-top: 20px;
+  }
+
+  .cont-profile-design {
+    border-bottom: 1px solid #ccc; /* Añade un borde inferior como separador */
+    padding-bottom: 20px; /* Añade algo de espacio debajo de cada componente */
+    margin-bottom: 20px; /* Añade espacio adicional para separar del siguiente componente */
+  }
+  
+  /* Para evitar la repetición del borde en el último elemento, puedes utilizar el pseudo-elemento :last-of-type */
+  .cont-profile-design:last-of-type {
+    border-bottom: none;
+  }
+  
+  .cont-profile-page {
+    padding-bottom: 10px;
+    padding-top: 50px;
+  }

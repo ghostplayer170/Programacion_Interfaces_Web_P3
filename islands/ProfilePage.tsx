@@ -21,7 +21,9 @@ const ProfilePage: FunctionComponent<Data> = ({ profile }) => {
     const userCookie = cookies.find((row) => row.startsWith("user="));
     const passwordCookie = cookies.find((row) => row.startsWith("password="));
     const userCookieValue = userCookie ? userCookie.split("=")[1] : null;
-    const passwordCookieValue = passwordCookie ? passwordCookie.split("=")[1] : null;
+    const passwordCookieValue = passwordCookie
+      ? passwordCookie.split("=")[1]
+      : null;
     if (
       userCookieValue === null ||
       passwordCookieValue === null ||
@@ -36,14 +38,28 @@ const ProfilePage: FunctionComponent<Data> = ({ profile }) => {
   return (
     <div>
       {cookiesOk && (
-        <div class="cont-login-profile, cont-form">
-          <Profiles profile={profile} login={true}/>
-          <ViewProfiles user={user} />
-          <AddComments user={user} />
-          <DeleteComments user={user} />
-          <UpdateProfile user={user} profile={profile}/>
-          <DeleteProfile user={user} />
-          <LogoutProfile />
+        <div class="cont-form cont-profile-page">
+          <div class="cont-profile-design">
+            <Profiles profile={profile} login={true} />
+          </div>
+          <div class="cont-profile-design">
+            <ViewProfiles user={user} />
+          </div>
+          <div class="cont-profile-design">
+            <AddComments user={user} />
+          </div>
+          <div class="cont-profile-design">
+            <DeleteComments user={user} />
+          </div>
+          <div class="cont-profile-design">
+            <UpdateProfile user={user} profile={profile} />
+          </div>
+          <div class="cont-profile-design">
+            <DeleteProfile user={user} />
+          </div>
+          <div class="cont-profile-design">
+            <LogoutProfile />
+          </div>
         </div>
       )}
     </div>

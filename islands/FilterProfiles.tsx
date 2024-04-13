@@ -48,7 +48,9 @@ const FilterProfiles: FunctionComponent<Data> = ({ profiles, user }) => {
     hobbies: "",
   });
 
-  const hobbiesFilterArray = filter.hobbies.split(",").map((hobby) => hobby.trim()).filter((elemhbb) => elemhbb !== "");
+  const hobbiesFilterArray = filter.hobbies.split(",").map((hobby) =>
+    hobby.trim()
+  ).filter((elemhbb) => elemhbb !== "");
 
   const filteredProfiles = profiles.filter((person) => {
     return (
@@ -63,9 +65,14 @@ const FilterProfiles: FunctionComponent<Data> = ({ profiles, user }) => {
   return (
     <>
       {cookiesOk && (
-        <div>
-          <div class="container-filters">
-            <button class="button" onClick={() => window.location.href = `/user/${user}`}>Back</button>
+        <div class="cont-filter">
+          <div class="cont-form cont-filter">
+            <button
+              class="button"
+              onClick={() => window.location.href = `/user/${user}`}
+            >
+              Back
+            </button>
             <input
               type="text"
               placeholder="Name"
@@ -86,14 +93,19 @@ const FilterProfiles: FunctionComponent<Data> = ({ profiles, user }) => {
               placeholder="Hobbies (comma separated)"
               onBlur={(e) => setHobbies(e.currentTarget.value)}
             />
-            <button class="button" onClick={() => setFilter({ name, age, sex, hobbies })}>
+            <button
+              class="button"
+              onClick={() => setFilter({ name, age, sex, hobbies })}
+            >
               Filter
             </button>
           </div>
-          <div class="container-profiles">
-            {filteredProfiles.map((profile) => (
-              <Profile key={profile._id} profile={profile} />
-            ))}
+          <div class="cont-filter-profiles">
+            <div class="cont-all-profiles">
+              {filteredProfiles.map((profile) => (
+                <Profile key={profile._id} profile={profile} />
+              ))}
+            </div>
           </div>
         </div>
       )}
