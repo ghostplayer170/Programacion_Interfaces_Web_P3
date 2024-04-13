@@ -20,8 +20,6 @@ import * as $DeleteComments from "./islands/DeleteComments.tsx";
 import * as $DeleteProfile from "./islands/DeleteProfile.tsx";
 import * as $FilterProfiles from "./islands/FilterProfiles.tsx";
 import * as $LoginProfile from "./islands/LoginProfile.tsx";
-import * as $LogoutProfile from "./islands/LogoutProfile.tsx";
-import * as $ProfilePage from "./islands/ProfilePage.tsx";
 import * as $SignupProfile from "./islands/SignupProfile.tsx";
 import * as $UpdateProfile from "./islands/UpdateProfile.tsx";
 import { type Manifest } from "$fresh/server.ts";
@@ -48,8 +46,6 @@ const manifest = {
     "./islands/DeleteProfile.tsx": $DeleteProfile,
     "./islands/FilterProfiles.tsx": $FilterProfiles,
     "./islands/LoginProfile.tsx": $LoginProfile,
-    "./islands/LogoutProfile.tsx": $LogoutProfile,
-    "./islands/ProfilePage.tsx": $ProfilePage,
     "./islands/SignupProfile.tsx": $SignupProfile,
     "./islands/UpdateProfile.tsx": $UpdateProfile,
   },
