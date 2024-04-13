@@ -3,19 +3,22 @@ import { Person } from "../types.ts";
 
 type Data = {
   profile: Person;
-  login: boolean;
+  login?: boolean;
+  moreInfo?: boolean;
 };
 
-const Profiles: FunctionComponent<Data> = ({ profile, login }) => {
+const Profile: FunctionComponent<Data> = ({ profile, login, moreInfo }) => {
   const { name, age, sex, description, photo, comments, hobbies } = profile;
+  const loginData = login || false;
+  const moreInfoData = moreInfo || false;
   return (
-    <div class="profile">
+    <div class="cont-profile">
       <img src={photo} alt={name} class="profile-img" />
       <h2>{name}</h2>
       <p>{age}</p>
       <p>{sex}</p>
       <p>{description}</p>
-      {login && (
+      {(loginData || moreInfoData) && (
         <>
           {comments.length > 0 && (
             <div>
@@ -37,4 +40,4 @@ const Profiles: FunctionComponent<Data> = ({ profile, login }) => {
   );
 };
 
-export default Profiles;
+export default Profile;

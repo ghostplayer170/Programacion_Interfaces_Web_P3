@@ -10,7 +10,7 @@ const LogoutProfile: FunctionComponent = () => {
   return (
     <div>
       <h1>Logout</h1>
-      <button onClick={handleLogout}>Logout</button>
+      <button class="button" onClick={handleLogout}>Logout</button>
     </div>
   );
 };

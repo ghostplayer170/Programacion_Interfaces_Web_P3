@@ -15,14 +15,10 @@ const DeleteProfile: FunctionComponent<{ user: string }> = ({ user }) => {
     const data = await response.json();
     if (data.success) {
       setDeleteSuccess(true);
+      window.location.href = `/hottinder`;
     } else {
       setDeleteSuccess(false);
     }
-  };
-
-  const handleCloseSuccessMessage = () => {
-    setDeleteSuccess(false);
-    window.location.href = `/hottinder`;
   };
   
   return (
@@ -33,13 +29,7 @@ const DeleteProfile: FunctionComponent<{ user: string }> = ({ user }) => {
         placeholder="Password"
         onBlur={(e) => setPassword(e.currentTarget.value)}
       />
-      <button onClick={fetchDeleteProfile}>Delete Profile</button>
-      {deleteSuccess && (
-        <dialog open>
-          <p>Success</p>
-          <button onClick={handleCloseSuccessMessage}>Close</button>
-        </dialog>
-      )}
+      <button class="button" onClick={fetchDeleteProfile}>Delete Profile</button>
     </div>
   );
 };

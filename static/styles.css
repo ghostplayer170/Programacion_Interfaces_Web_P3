@@ -1,14 +1,324 @@
-.profile-img{
-    width: 150px;
-    height: 150px;
-    border-radius: 5px;
-    border: 1px solid black;
+/* Estilos globales y colores */
+:root {
+    --primary-color: #ff5a5f;
+    /* Rojo suave, principal */
+    --accent-color: #ffab61;
+    /* Naranja suave, para acentos */
+    --text-color: #333;
+    /* Color de texto principal */
+    --background-color: #fff;
+    /* Fondo claro para la legibilidad */
+    --button-bg-color: #ff5a5f;
+    /* Color de fondo para botones */
+    --button-text-color: #fff;
+    /* Color de texto para botones */
 }
 
-div.container-profiles{
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+@keyframes backgroundFlicker {
+
+    0%,
+    100% {
+        background: #ff5a5f;
+        /* Rojo */
+    }
+
+    15% {
+        background: #ffab61;
+        /* Naranja */
+    }
+
+    30% {
+        background: #ffdc73;
+        /* Amarillo claro */
+    }
+
+    45% {
+        background: #ffab61;
+        /* Naranja */
+    }
+
+    60% {
+        background: #ff5a5f;
+        /* Rojo */
+    }
+
+    75% {
+        background: #ffab61;
+        /* Naranja */
+    }
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    animation: backgroundFlicker 6s ease-in-out infinite;
+}
+
+/* Layout centrado */
+.layout {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Diseño adaptativo para diferentes tamaños de pantalla para el logo */
+@media (max-width: 768px) {
+    .menu img {
+        width: 250px;
+        height: auto;
+    }
+}
+
+@media (min-width: 769px) {
+    .menu img {
+        width: 400px;
+        height: auto;
+    }
+}
+
+/* Estilos para el menú principal */
+.menu {
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.menu h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* Añade un margen alrededor del logo para asegurar espacio */
+.menu a {
+    display: inline-block;
+}
+
+/* Estilos adicionales para asegurar que el logo no esté demasiado pegado al texto del menú en pantallas pequeñas */
+@media (max-width: 768px) {
+    .menu a {
+        margin-bottom: 10px;
+    }
+}
+
+
+/* Estilos para botones */
+.button {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: 1px solid var(--button-bg-color);
+}
+
+.cont-home,
+.cont-login-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Contenedor de perfiles con una cuadrícula que se ajusta según el tamaño de pantalla */
+.cont-all-profiles {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* Empieza con una cuadrícula de columnas flexibles */
+}
+
+/* Media queries para pantallas de diferentes tamaños */
+@media (min-width: 600px) {
+    .cont-all-profiles {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+        /* 2 columnas para pantallas pequeñas */
+    }
+}
+
+@media (min-width: 900px) {
+    .cont-all-profiles {
+        grid-template-columns: repeat(3, minmax(200px, 1fr));
+        /* 3 columnas para pantallas medianas */
+    }
+}
+
+@media (min-width: 1200px) {
+    .cont-all-profiles {
+        grid-template-columns: repeat(4, minmax(200px, 1fr));
+        /* 4 columnas para pantallas grandes */
+    }
+}
+
+@media (min-width: 1800px) {
+    .cont-all-profiles {
+        grid-template-columns: repeat(5, minmax(200px, 1fr));
+        /* 5 columnas para pantallas muy grandes */
+    }
+}
+
+
+/* Estilos específicos para perfiles */
+.cont-profile {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: var(--background-color);
+}
+
+/* Efecto de hover hace que el perfil se agrande */
+.cont-profile:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+    box-shadow: black 0px 0px 10px;
+}
+
+.profile-img {
+    width: 100%;
+    height: 300px;
+    border-bottom: 1px solid #eee;
+}
+
+.cont-profile h2,
+.cont-profile p {
+    margin: 10px;
+}
+
+/* Diseño adaptativo para diferentes tamaños de pantalla */
+@media (max-width: 768px) {
+    .cont-all-profiles {
+        grid-template-columns: 1fr;
+    }
+
+    .menu h1 {
+        font-size: 20px;
+    }
+
+    .button {
+        padding: 8px 16px;
+    }
+}
+
+.cont-profile div {
+    padding: 10px;
+    background-color: var(--accent-color);
+    color: white;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.cont-LoginAndSignup {
+    display: flex;
     justify-content: center;
     align-items: center;
+    gap: 20px;
+    padding-bottom: 40px;
+}
+
+.cont-LoginAndSignup button {
+    padding: 20px 40px;
+    font-size: 20px;
+    border: rgb(96, 96, 96) solid 0.5px;
+    border-radius: 10px;
+}
+
+/* Estilos para la página de inicio de sesión */
+.cont-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+}
+
+.cont-form {
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 100px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: max-content;
+}
+
+.signup {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.cont-form h1 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.cont-form input {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Estilo para botones */
+.button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+    transition: opacity 0.3s;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+/* Style for the container of the dialog */
+.dialog-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style for the dialog itself */
+dialog {
+    display: block;
+    /* Override the default display property */
+    margin: auto;
+    /* Center in the flex container */
+    max-width: 400px;
+    position: absolute;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }

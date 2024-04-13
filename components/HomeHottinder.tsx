@@ -1,6 +1,7 @@
 import { FunctionComponent } from "preact";
 import { Person } from "../types.ts";
-import FilterProfiles from "../islands/FilterProfiles.tsx";
+import Profiles from "./Profile.tsx";
+import LoginAndSignup from "../islands/LoginAndSignup.tsx";
 
 type Data = {
   profiles: Person[];
@@ -8,8 +9,14 @@ type Data = {
 
 const HomeHottinder: FunctionComponent<Data> = ({ profiles }) => {
   return (
-    <div class="cont-all-profiles">
-      <FilterProfiles profiles={profiles} />
+    <div class="cont-home">
+      <LoginAndSignup />
+      <div class="cont-all-profiles">
+        {profiles.map((profile) => <Profiles
+          profile={profile}
+          moreInfo={false}
+        />)}
+      </div>
     </div>
   );
 };

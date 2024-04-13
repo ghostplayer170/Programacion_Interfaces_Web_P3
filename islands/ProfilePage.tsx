@@ -7,7 +7,7 @@ import DeleteComments from "./DeleteComments.tsx";
 import UpdateProfile from "./UpdateProfile.tsx";
 import LogoutProfile from "./LogoutProfile.tsx";
 import { useEffect, useState } from "preact/hooks";
-import FilterProfiles from "./FilterProfiles.tsx";
+import ViewProfiles from "./ViewProfiles.tsx";
 
 type Data = {
   profile: Person;
@@ -36,11 +36,12 @@ const ProfilePage: FunctionComponent<Data> = ({ profile }) => {
   return (
     <div>
       {cookiesOk && (
-        <div class="cont-login-profile">
-          <Profiles profile={profile} login={true} />
+        <div class="cont-login-profile, cont-form">
+          <Profiles profile={profile} login={true}/>
+          <ViewProfiles user={user} />
           <AddComments user={user} />
           <DeleteComments user={user} />
-          <UpdateProfile user={user} />
+          <UpdateProfile user={user} profile={profile}/>
           <DeleteProfile user={user} />
           <LogoutProfile />
         </div>

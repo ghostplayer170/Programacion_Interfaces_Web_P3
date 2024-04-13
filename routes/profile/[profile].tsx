@@ -1,5 +1,5 @@
 import { FreshContext, Handlers, PageProps } from "$fresh/server.ts";
-import ProfilePage from "../../islands/ProfilePage.tsx";
+import ProfileInfo from "../../components/ProfileInfo.tsx";
 import { Person } from "../../types.ts";
 
 type Data = {
@@ -9,7 +9,7 @@ type Data = {
 export const handler: Handlers = {
   async GET(_req: Request, ctx: FreshContext<unknown, Data>) {
     try {
-      const name = ctx.params.user;
+      const name = ctx.params.profile;
       const url = `https://lovers.deno.dev/${name}`;
       const response = await fetch(url);
       if (response.status === 404) {
@@ -23,10 +23,10 @@ export const handler: Handlers = {
   },
 };
 
-export default function UserPage(props: PageProps<Data>) {
+export default function ProfilePage(props: PageProps<Data>) {
   return (
     <>
-      <ProfilePage profile={props.data.profile} />
+      <ProfileInfo profile={props.data.profile} />
     </>
   );
 }

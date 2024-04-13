@@ -13,15 +13,21 @@ import * as $api_update from "./routes/api/update.ts";
 import * as $hottinder from "./routes/hottinder.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $login from "./routes/login.tsx";
+import * as $profile_profile_ from "./routes/profile/[profile].tsx";
 import * as $signup from "./routes/signup.tsx";
 import * as $user_user_ from "./routes/user/[user].tsx";
+import * as $view_view_ from "./routes/view/[view].tsx";
 import * as $AddComments from "./islands/AddComments.tsx";
 import * as $DeleteComments from "./islands/DeleteComments.tsx";
 import * as $DeleteProfile from "./islands/DeleteProfile.tsx";
 import * as $FilterProfiles from "./islands/FilterProfiles.tsx";
+import * as $LoginAndSignup from "./islands/LoginAndSignup.tsx";
 import * as $LoginProfile from "./islands/LoginProfile.tsx";
+import * as $LogoutProfile from "./islands/LogoutProfile.tsx";
+import * as $ProfilePage from "./islands/ProfilePage.tsx";
 import * as $SignupProfile from "./islands/SignupProfile.tsx";
 import * as $UpdateProfile from "./islands/UpdateProfile.tsx";
+import * as $ViewProfiles from "./islands/ViewProfiles.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
@@ -37,17 +43,23 @@ const manifest = {
     "./routes/hottinder.tsx": $hottinder,
     "./routes/index.tsx": $index,
     "./routes/login.tsx": $login,
+    "./routes/profile/[profile].tsx": $profile_profile_,
     "./routes/signup.tsx": $signup,
     "./routes/user/[user].tsx": $user_user_,
+    "./routes/view/[view].tsx": $view_view_,
   },
   islands: {
     "./islands/AddComments.tsx": $AddComments,
     "./islands/DeleteComments.tsx": $DeleteComments,
     "./islands/DeleteProfile.tsx": $DeleteProfile,
     "./islands/FilterProfiles.tsx": $FilterProfiles,
+    "./islands/LoginAndSignup.tsx": $LoginAndSignup,
     "./islands/LoginProfile.tsx": $LoginProfile,
+    "./islands/LogoutProfile.tsx": $LogoutProfile,
+    "./islands/ProfilePage.tsx": $ProfilePage,
     "./islands/SignupProfile.tsx": $SignupProfile,
     "./islands/UpdateProfile.tsx": $UpdateProfile,
+    "./islands/ViewProfiles.tsx": $ViewProfiles,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

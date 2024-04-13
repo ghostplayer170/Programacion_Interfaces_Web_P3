@@ -11,8 +11,14 @@ const SignupProfile: FunctionComponent = () => {
   const [hobbies, setHobbies] = useState<string[]>([]);
   const [photo, setPhoto] = useState<string>("");
   const [signupSuccess, setSignupSuccess] = useState<boolean>(false);
+  const [missingFields, setMissingFields] = useState<boolean>(false);
 
   const fetchSignup = async () => {
+    if (!name || !password || age === 0 || !sex || !photo) {
+      setMissingFields(true);
+      return;
+    }
+
     const user: User = {
       name: name,
       password: password,
@@ -44,8 +50,13 @@ const SignupProfile: FunctionComponent = () => {
     window.location.href = `/login`;
   };
 
+  const handleCloseMessage = () => {
+    setMissingFields(false);
+    setSignupSuccess(false);
+  };
+
   return (
-    <div>
+    <div class="cont-form signup">
       <h1>Signup</h1>
       <input
         type="text"
@@ -82,12 +93,31 @@ const SignupProfile: FunctionComponent = () => {
         placeholder="Photo"
         onBlur={(e) => setPhoto(e.currentTarget.value)}
       />
-      <button onClick={fetchSignup}>Signup</button>
-      {signupSuccess && (
+      <button class="button" onClick={fetchSignup}>Signup</button>
+      <button class="button" onClick={() => window.location.href = "/login"}>
+        Login
+      </button>
+      {missingFields && (
         <dialog open>
-          <p>Success</p>
-          <button onClick={handleCloseSuccessMessage}>Close</button>
+          <h3>Missing Required Fields</h3>
+          <p>Please ensure all required fields are filled:</p>
+          <strong>Name, Password, Age, Sex, and Photo</strong>
+          <button class="button" onClick={handleCloseMessage}>
+            Close
+          </button>
         </dialog>
+      )}
+      {signupSuccess && (
+        <div class="dialog-container">
+          <dialog open>
+            <div class="dialog-container">
+              <p>Success</p>
+              <button class="button" onClick={handleCloseSuccessMessage}>
+                Close
+              </button>
+            </div>
+          </dialog>
+        </div>
       )}
     </div>
   );

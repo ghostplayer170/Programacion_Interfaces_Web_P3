@@ -1,20 +1,18 @@
 import { useState } from "preact/hooks";
 import { FunctionComponent } from "preact";
-import { User } from "../types.ts";
+import { Person, User } from "../types.ts";
 
-const UpdateProfile: FunctionComponent<{ user: string }> = ({ user }) => {
-  const [userData, setUserData] = useState<User>(
-    {
-      name: user,
-      password: "",
-      age: 0,
-      sex: "",
-      description: "",
-      hobbies: [],
-      photo: "",
-      comments: []
-    },
-  );
+const UpdateProfile: FunctionComponent<{ user: string, profile: Person }> = ({ user, profile }) => {
+  const [userData, setUserData] = useState<User>({
+    name: user,
+    password: "",
+    age: profile.age,
+    sex: profile.sex,
+    description: profile.description,
+    hobbies: profile.hobbies,
+    photo: profile.photo,
+    comments: profile.comments,
+  });
   const [updateSuccess, setUpdateSeccess] = useState<boolean>(false);
   const fetchUpdateProfiles = async () => {
     const response = await fetch("/api/update", {
@@ -75,7 +73,7 @@ const UpdateProfile: FunctionComponent<{ user: string }> = ({ user }) => {
         onBlur={(e) =>
           setUserData({ ...userData, photo: e.currentTarget.value })}
       />
-      <button onClick={fetchUpdateProfiles}>Update Profile</button>
+      <button class="button" onClick={fetchUpdateProfiles}>Update Profile</button>
       {updateSuccess && (
         <dialog open>
           <p>Success</p>

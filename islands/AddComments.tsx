@@ -39,11 +39,11 @@ const AddComments: FunctionComponent<{ user: string }> = ({ user }) => {
         placeholder="Message"
         onBlur={(e) => setMessage(e.currentTarget.value)}
       />
-      <button onClick={fetchAddComments}>Add Comments</button>
+      <button class="button" onClick={fetchAddComments}>Add Comments</button>
       {addSuccess && (
-        <dialog open>
+        <dialog open class="dialog-msg">
           <p>Success</p>
-          <button onClick={() => setAddSuccess(false)}>Close</button>
+          <button class="button" onClick={() => setAddSuccess(false)}>Close</button>
         </dialog>
       )}
     </div>
