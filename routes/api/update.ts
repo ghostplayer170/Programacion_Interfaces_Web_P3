@@ -1,5 +1,4 @@
 import { Handlers } from "$fresh/server.ts";
-import { Person } from "../../types.ts";
 
 export const handler: Handlers = {
   async PUT(req: Request) {

@@ -41,7 +41,7 @@ const SignupProfile: FunctionComponent = () => {
 
   const handleCloseSuccessMessage = () => {
     setSignupSuccess(false);
-    window.location.href = `/`;
+    window.location.href = `/login`;
   };
 
   return (

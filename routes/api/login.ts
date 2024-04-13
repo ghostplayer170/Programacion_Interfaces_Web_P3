@@ -1,10 +1,5 @@
 import { Handlers } from "$fresh/server.ts";
 
-const generateToken = (name: string, password: string) => {
-  const token = btoa(name + password); // btoa is a function that encodes a string in base-64
-  return token;
-};
-
 export const handler: Handlers = {
   async POST(req: Request) {
     try {
@@ -30,7 +25,6 @@ export const handler: Handlers = {
       return new Response(
         JSON.stringify({
           success: true,
-          token: generateToken(data.name, data.password),
         }),
         {
           headers: { "Content-Type": "application/json" },

@@ -21,9 +21,7 @@ const ProfilePage: FunctionComponent<Data> = ({ profile }) => {
     const userCookie = cookies.find((row) => row.startsWith("user="));
     const passwordCookie = cookies.find((row) => row.startsWith("password="));
     const userCookieValue = userCookie ? userCookie.split("=")[1] : null;
-    const passwordCookieValue = passwordCookie
-      ? passwordCookie.split("=")[1]
-      : null;
+    const passwordCookieValue = passwordCookie ? passwordCookie.split("=")[1] : null;
     if (
       userCookieValue === null ||
       passwordCookieValue === null ||
