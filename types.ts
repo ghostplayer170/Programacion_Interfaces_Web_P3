@@ -1,6 +1,7 @@
 export type Person = {
   _id: string;
   name: string;
+  password: string;
   age: number;
   sex: string;
   description: string;

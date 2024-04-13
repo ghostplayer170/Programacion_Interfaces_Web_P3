@@ -26,14 +26,17 @@ const FilterProfiles: FunctionComponent<Data> = ({ profiles }) => {
     hobbies: "",
   });
 
-  const hobbiesFilterArray = filter.hobbies.split(",").map((hobby) => hobby.trim()).filter((hobb) => hobb !== "");
+  const hobbiesFilterArray = filter.hobbies.split(",").map((hobby) =>
+    hobby.trim()
+  ).filter((hobb) => hobb !== "");
 
   const filteredProfiles = profiles.filter((person) => {
     return (
       (filter.name === "" || person.name.includes(filter.name)) &&
       (filter.age === 0 || person.age === filter.age) &&
       (filter.sex === "" || person.sex === filter.sex) &&
-      (hobbiesFilterArray.length === 0 || hobbiesFilterArray.some((hobby) => person.hobbies.includes(hobby)))
+      (hobbiesFilterArray.length === 0 ||
+        hobbiesFilterArray.some((hobby) => person.hobbies.includes(hobby)))
     );
   });
 
@@ -66,7 +69,7 @@ const FilterProfiles: FunctionComponent<Data> = ({ profiles }) => {
       </div>
       <div class="container-profiles">
         {filteredProfiles.map((profile) => (
-          <Profile key={profile._id} profile={profile} />
+          <Profile key={profile._id} profile={profile} login={false} />
         ))}
       </div>
     </div>

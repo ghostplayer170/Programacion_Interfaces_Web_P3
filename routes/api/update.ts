@@ -1,37 +1,26 @@
 import { Handlers } from "$fresh/server.ts";
-
-const generateToken = (name: string, password: string) => {
-  const token = btoa(name + password); // btoa is a function that encodes a string in base-64
-  return token;
-};
+import { Person } from "../../types.ts";
 
 export const handler: Handlers = {
-  async POST(req: Request) {
+  async PUT(req: Request) {
     try {
-      const data: { name: string; password: string } = await req.json();
-      const url = `https://lovers.deno.dev/login`;
+      const user = await req.json();
+      const url = `https://lovers.deno.dev/${user.name}`;
       const response = await fetch(url, {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({user}),
       });
-      if (response.status == 401) {
-        return new Response(
-          JSON.stringify({ success: false, message: "Unauthorized" }),
-        );
-      }
       if (response.status === 404) {
         return new Response(
           JSON.stringify({ success: false, message: "Lover not found" }),
         );
       }
+      const data = await response.json();
       return new Response(
-        JSON.stringify({
-          success: true,
-          token: generateToken(data.name, data.password),
-        }),
+        JSON.stringify({ success: true, user: data }),
         {
           headers: { "Content-Type": "application/json" },
         },

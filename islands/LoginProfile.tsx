@@ -1,14 +1,13 @@
-import { useEffect, useState } from "preact/hooks";
+import { useState } from "preact/hooks";
 import { FunctionComponent } from "preact";
 
-const Login: FunctionComponent = () => {
+const LoginProfile: FunctionComponent = () => {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
-  const [showSuccessMessage, setShowSuccessMessage] = useState<boolean>(false);
 
   const fetchLogin = async () => {
-    const response = await fetch("login", {
+    const response = await fetch("/api/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,26 +16,17 @@ const Login: FunctionComponent = () => {
     });
     const data = await response.json();
     if (data.success) {
-      localStorage.setItem("token", data.token);
+      document.cookie = `user=${name}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+      document.cookie = `password=${password}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
       setLoginSuccess(true);
+    } else {
+      setLoginSuccess(false);
     }
-    setLoginSuccess(false);
   };
 
-  useEffect(() => {
-    if (loginSuccess) {
-      setShowSuccessMessage(true);
-    }
-  }, [loginSuccess]);
-
   const handleCloseSuccessMessage = () => {
-    setShowSuccessMessage(false);
-    return new Response("", {
-      status: 303,
-      headers: {
-        "Location": "hottinder",
-      },
-    });
+    setLoginSuccess(false);
+    window.location.href = `/user/${name}`;
   };
 
   return (
@@ -53,7 +43,7 @@ const Login: FunctionComponent = () => {
         onBlur={(e) => setPassword(e.currentTarget.value)}
       />
       <button onClick={fetchLogin}>Login</button>
-      {loginSuccess && showSuccessMessage && (
+      {loginSuccess && (
         <dialog open>
           <p>Success</p>
           <button onClick={handleCloseSuccessMessage}>Close</button>
@@ -63,4 +53,4 @@ const Login: FunctionComponent = () => {
   );
 };
 
-export default Login;
+export default LoginProfile;

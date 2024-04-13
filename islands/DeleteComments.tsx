@@ -1,16 +1,17 @@
-import { useState } from "preact/hooks";
 import { FunctionComponent } from "preact";
+import { useState } from "preact/hooks";
 
-const DeleteProfile: FunctionComponent<{ user: string }> = ({ user }) => {
+const DeleteComments: FunctionComponent<{ user: string }> = ({ user }) => {
+  const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [deleteSuccess, setDeleteSuccess] = useState<boolean>(false);
-  const fetchDeleteProfile = async () => {
-    const response = await fetch("/api/delete", {
+  const fetchDeleteComments = async () => {
+    const response = await fetch("/api/comments", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: user, password }),
+      body: JSON.stringify({ user, name, password }),
     });
     const data = await response.json();
     if (data.success) {
@@ -19,29 +20,28 @@ const DeleteProfile: FunctionComponent<{ user: string }> = ({ user }) => {
       setDeleteSuccess(false);
     }
   };
-
-  const handleCloseSuccessMessage = () => {
-    setDeleteSuccess(false);
-    window.location.href = `/hottinder`;
-  };
-  
   return (
     <div>
-      <h1>Delete Profile</h1>
+      <h1>Delete Comments</h1>
+      <input
+        type="text"
+        placeholder="Name"
+        onBlur={(e) => setName(e.currentTarget.value)}
+      />
       <input
         type="password"
         placeholder="Password"
         onBlur={(e) => setPassword(e.currentTarget.value)}
       />
-      <button onClick={fetchDeleteProfile}>Delete Profile</button>
+      <button onClick={fetchDeleteComments}>Delete Comments</button>
       {deleteSuccess && (
         <dialog open>
           <p>Success</p>
-          <button onClick={handleCloseSuccessMessage}>Close</button>
+          <button onClick={() => setDeleteSuccess(false)}>Close</button>
         </dialog>
       )}
     </div>
   );
 };
 
-export default DeleteProfile;
+export default DeleteComments;

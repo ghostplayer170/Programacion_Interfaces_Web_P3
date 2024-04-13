@@ -2,7 +2,7 @@ import { useState } from "preact/hooks";
 import { FunctionComponent } from "preact";
 import { User } from "../types.ts";
 
-const Signup: FunctionComponent = () => {
+const SignupProfile: FunctionComponent = () => {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [age, setAge] = useState<number>(0);
@@ -33,7 +33,6 @@ const Signup: FunctionComponent = () => {
     });
     const data = await response.json();
     if (data.success) {
-      localStorage.setItem("token", data.token);
       setSignupSuccess(true);
     } else {
       setSignupSuccess(false);
@@ -42,12 +41,7 @@ const Signup: FunctionComponent = () => {
 
   const handleCloseSuccessMessage = () => {
     setSignupSuccess(false);
-    return new Response("", {
-      status: 303,
-      headers: {
-        "Location": "/",
-      },
-    });
+    window.location.href = `/`;
   };
 
   return (
@@ -99,4 +93,4 @@ const Signup: FunctionComponent = () => {
   );
 };
 
-export default Signup;
+export default SignupProfile;

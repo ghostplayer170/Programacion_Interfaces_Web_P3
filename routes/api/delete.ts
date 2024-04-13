@@ -1,10 +1,10 @@
 import { Handlers } from "$fresh/server.ts";
 
 export const handler: Handlers = {
-  async POST(req: Request) {
-    const { name, password } = await req.json();
-    const url = `https://lovers.deno.dev/${name}`;
+  async DELETE(req: Request) {
     try {
+      const { name, password } = await req.json();
+      const url = `https://lovers.deno.dev/${name}`;
       const response = await fetch(url, {
         method: "DELETE",
         headers: {

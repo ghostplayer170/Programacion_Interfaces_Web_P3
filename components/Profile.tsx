@@ -3,28 +3,11 @@ import { Person } from "../types.ts";
 
 type Data = {
   profile: Person;
+  login: boolean;
 };
 
-/*
-      {comments.length > 0 && (
-        <div>
-          <strong>Comments:</strong>
-          {comments.map((comment) => <p>{comment.user}: {comment.message}</p>)}
-        </div>
-      )}
-*/
-
-/*
-      {hobbies.length > 0 && (
-        <div>
-          <strong>Hobbies:</strong>
-          {hobbies.map((hobby) => <p>{hobby}</p>)}
-        </div>
-      )}
-*/
-
-const Profiles: FunctionComponent<Data> = ({ profile }) => {
-  const { name, age, sex, description, hobbies, comments, photo } = profile;
+const Profiles: FunctionComponent<Data> = ({ profile, login }) => {
+  const { name, age, sex, description, photo, comments, hobbies } = profile;
   return (
     <div class="profile">
       <img src={photo} alt={name} class="profile-img" />
@@ -32,7 +15,24 @@ const Profiles: FunctionComponent<Data> = ({ profile }) => {
       <p>{age}</p>
       <p>{sex}</p>
       <p>{description}</p>
-      <p>{hobbies}</p>
+      {login && (
+        <>
+          {comments.length > 0 && (
+            <div>
+              <strong>Comments:</strong>
+              {comments.map((comment) => (
+                <p>{comment.user}: {comment.message}</p>
+              ))}
+            </div>
+          )}
+          {hobbies.length > 0 && (
+            <div>
+              <strong>Hobbies:</strong>
+              {hobbies.map((hobby) => <p>{hobby}</p>)}
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };

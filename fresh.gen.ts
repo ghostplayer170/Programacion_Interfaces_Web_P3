@@ -4,36 +4,54 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $_layout from "./routes/_layout.tsx";
+import * as $api_comments from "./routes/api/comments.ts";
 import * as $api_delete from "./routes/api/delete.ts";
 import * as $api_login from "./routes/api/login.ts";
 import * as $api_register from "./routes/api/register.ts";
+import * as $api_update from "./routes/api/update.ts";
 import * as $hottinder from "./routes/hottinder.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $login from "./routes/login.tsx";
+import * as $signup from "./routes/signup.tsx";
 import * as $user_user_ from "./routes/user/[user].tsx";
+import * as $AddComments from "./islands/AddComments.tsx";
+import * as $DeleteComments from "./islands/DeleteComments.tsx";
 import * as $DeleteProfile from "./islands/DeleteProfile.tsx";
 import * as $FilterProfiles from "./islands/FilterProfiles.tsx";
-import * as $Login from "./islands/Login.tsx";
-import * as $ProfileInfo from "./islands/ProfileInfo.tsx";
-import * as $Signup from "./islands/Signup.tsx";
+import * as $LoginProfile from "./islands/LoginProfile.tsx";
+import * as $LogoutProfile from "./islands/LogoutProfile.tsx";
+import * as $ProfilePage from "./islands/ProfilePage.tsx";
+import * as $SignupProfile from "./islands/SignupProfile.tsx";
+import * as $UpdateProfile from "./islands/UpdateProfile.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/_layout.tsx": $_layout,
+    "./routes/api/comments.ts": $api_comments,
     "./routes/api/delete.ts": $api_delete,
     "./routes/api/login.ts": $api_login,
     "./routes/api/register.ts": $api_register,
+    "./routes/api/update.ts": $api_update,
     "./routes/hottinder.tsx": $hottinder,
     "./routes/index.tsx": $index,
+    "./routes/login.tsx": $login,
+    "./routes/signup.tsx": $signup,
     "./routes/user/[user].tsx": $user_user_,
   },
   islands: {
+    "./islands/AddComments.tsx": $AddComments,
+    "./islands/DeleteComments.tsx": $DeleteComments,
     "./islands/DeleteProfile.tsx": $DeleteProfile,
     "./islands/FilterProfiles.tsx": $FilterProfiles,
-    "./islands/Login.tsx": $Login,
-    "./islands/ProfileInfo.tsx": $ProfileInfo,
-    "./islands/Signup.tsx": $Signup,
+    "./islands/LoginProfile.tsx": $LoginProfile,
+    "./islands/LogoutProfile.tsx": $LogoutProfile,
+    "./islands/ProfilePage.tsx": $ProfilePage,
+    "./islands/SignupProfile.tsx": $SignupProfile,
+    "./islands/UpdateProfile.tsx": $UpdateProfile,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;
