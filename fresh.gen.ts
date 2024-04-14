@@ -18,6 +18,7 @@ import * as $signup from "./routes/signup.tsx";
 import * as $user_user_ from "./routes/user/[user].tsx";
 import * as $view_view_ from "./routes/view/[view].tsx";
 import * as $AddComments from "./islands/AddComments.tsx";
+import * as $BtnViewProfile from "./islands/BtnViewProfile.tsx";
 import * as $DeleteComments from "./islands/DeleteComments.tsx";
 import * as $DeleteProfile from "./islands/DeleteProfile.tsx";
 import * as $FilterProfiles from "./islands/FilterProfiles.tsx";
@@ -50,6 +51,7 @@ const manifest = {
   },
   islands: {
     "./islands/AddComments.tsx": $AddComments,
+    "./islands/BtnViewProfile.tsx": $BtnViewProfile,
     "./islands/DeleteComments.tsx": $DeleteComments,
     "./islands/DeleteProfile.tsx": $DeleteProfile,
     "./islands/FilterProfiles.tsx": $FilterProfiles,

@@ -33,12 +33,16 @@ const DeleteComments: FunctionComponent<{ user: string }> = ({ user }) => {
         placeholder="Password"
         onBlur={(e) => setPassword(e.currentTarget.value)}
       />
-      <button class="button" onClick={fetchDeleteComments}>Delete Comments</button>
+      <button class="button" onClick={fetchDeleteComments}>
+        Delete Comments
+      </button>
       {deleteSuccess && (
-        <dialog open class="dialog-msg">
+        <div>
           <p>Success</p>
-          <button class="button"  onClick={() => setDeleteSuccess(false)}>Close</button>
-        </dialog>
+          <button class="button" onClick={() => setDeleteSuccess(false)}>
+            Close
+          </button>
+        </div>
       )}
     </div>
   );

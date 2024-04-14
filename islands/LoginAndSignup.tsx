@@ -10,7 +10,7 @@ const LoginAndSignup: FunctionComponent = () => {
   return (
     <div class="cont-LoginAndSignup">
       <button class="button" onClick={handleLogin}>Login</button>
-      <button class="button" onClick={handleSignup}>SingUp</button>
+      <button class="button" onClick={handleSignup}>SignUp</button>
     </div>
   );
 };

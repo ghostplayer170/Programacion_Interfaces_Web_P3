@@ -14,7 +14,7 @@ const SignupProfile: FunctionComponent = () => {
   const [missingFields, setMissingFields] = useState<boolean>(false);
 
   const fetchSignup = async () => {
-    if (!name || !password || age === 0 || !sex || !photo) {
+    if (!name || !password || age < 18 || !sex || !photo) {
       setMissingFields(true);
       return;
     }
@@ -101,7 +101,7 @@ const SignupProfile: FunctionComponent = () => {
         <dialog open>
           <h3>Missing Required Fields</h3>
           <p>Please ensure all required fields are filled:</p>
-          <strong>Name, Password, Age, Sex, and Photo</strong>
+          <strong>Name, Password, {"Age(+18)"}, Sex, and Photo</strong>
           <button class="button" onClick={handleCloseMessage}>
             Close
           </button>
@@ -112,6 +112,7 @@ const SignupProfile: FunctionComponent = () => {
           <dialog open>
             <div class="dialog-container">
               <p>Success</p>
+              <br />
               <button class="button" onClick={handleCloseSuccessMessage}>
                 Close
               </button>

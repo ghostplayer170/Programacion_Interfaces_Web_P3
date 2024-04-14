@@ -1,5 +1,6 @@
 import { FunctionComponent } from "preact";
 import { Person } from "../types.ts";
+import BtnViewProfile from "../islands/BtnViewProfile.tsx";
 
 type Data = {
   profile: Person;
@@ -23,19 +24,20 @@ const Profile: FunctionComponent<Data> = ({ profile, login, moreInfo }) => {
           {comments.length > 0 && (
             <div>
               <strong>Comments:</strong>
-              {comments.map((comment) => (
-                <p>{comment.user}: {comment.message}</p>
+              {comments.map((comment, index) => (
+                <p key={index}>{comment.user}: {comment.message}</p>
               ))}
             </div>
           )}
           {hobbies.length > 0 && (
             <div>
               <strong>Hobbies:</strong>
-              {hobbies.map((hobby) => <p>{hobby}</p>)}
+              {hobbies.map((hobby, index) => <p key={index}>{hobby}</p>)}
             </div>
           )}
         </>
       )}
+      <BtnViewProfile profile={name} moreInfo={moreInfoData} />
     </div>
   );
 };

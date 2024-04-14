@@ -2,7 +2,9 @@ import { useState } from "preact/hooks";
 import { FunctionComponent } from "preact";
 import { Person, User } from "../types.ts";
 
-const UpdateProfile: FunctionComponent<{ user: string, profile: Person }> = ({ user, profile }) => {
+const UpdateProfile: FunctionComponent<{ user: string; profile: Person }> = (
+  { user, profile },
+) => {
   const [userData, setUserData] = useState<User>({
     name: user,
     password: "",
@@ -20,7 +22,7 @@ const UpdateProfile: FunctionComponent<{ user: string, profile: Person }> = ({ u
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({user}),
+      body: JSON.stringify({ user }),
     });
     const data = await response.json();
     console.log(data);
@@ -65,7 +67,10 @@ const UpdateProfile: FunctionComponent<{ user: string, profile: Person }> = ({ u
         type="text"
         placeholder="Hobbies"
         onBlur={(e) =>
-          setUserData({ ...userData, hobbies: e.currentTarget.value.split(",") })}
+          setUserData({
+            ...userData,
+            hobbies: e.currentTarget.value.split(","),
+          })}
       />
       <input
         type="text"
@@ -73,12 +78,16 @@ const UpdateProfile: FunctionComponent<{ user: string, profile: Person }> = ({ u
         onBlur={(e) =>
           setUserData({ ...userData, photo: e.currentTarget.value })}
       />
-      <button class="button" onClick={fetchUpdateProfiles}>Update Profile</button>
+      <button class="button" onClick={fetchUpdateProfiles}>
+        Update Profile
+      </button>
       {updateSuccess && (
-        <dialog open>
+        <div>
           <p>Success</p>
-          <button onClick={handleCloseSuccessMessage}>Close</button>
-        </dialog>
+          <button class="button" onClick={handleCloseSuccessMessage}>
+            Close
+          </button>
+        </div>
       )}
     </div>
   );

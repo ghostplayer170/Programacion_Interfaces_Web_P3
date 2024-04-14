@@ -48,9 +48,7 @@ const FilterProfiles: FunctionComponent<Data> = ({ profiles, user }) => {
     hobbies: "",
   });
 
-  const hobbiesFilterArray = filter.hobbies.split(",").map((hobby) =>
-    hobby.trim()
-  ).filter((elemhbb) => elemhbb !== "");
+  const hobbiesFilterArray = filter.hobbies.split(",").map((hobby) => hobby.trim()).filter((elemhbb) => elemhbb !== "");
 
   const filteredProfiles = profiles.filter((person) => {
     return (

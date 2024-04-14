@@ -41,10 +41,12 @@ const AddComments: FunctionComponent<{ user: string }> = ({ user }) => {
       />
       <button class="button" onClick={fetchAddComments}>Add Comments</button>
       {addSuccess && (
-        <dialog open class="dialog-msg">
+        <div>
           <p>Success</p>
-          <button class="button" onClick={() => setAddSuccess(false)}>Close</button>
-        </dialog>
+          <button class="button" onClick={()=>setAddSuccess(false)}>
+            Close
+          </button>
+        </div>
       )}
     </div>
   );
