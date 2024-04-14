@@ -37,10 +37,6 @@ const FilterProfiles: FunctionComponent<Data> = ({ profiles, user }) => {
     }
   });
 
-  const [name, setName] = useState<string>("");
-  const [age, setAge] = useState<number>(0);
-  const [sex, setSex] = useState<string>("");
-  const [hobbies, setHobbies] = useState<string>("");
   const [filter, setFilter] = useState<Filter>({
     name: "",
     age: 0,
@@ -48,22 +44,31 @@ const FilterProfiles: FunctionComponent<Data> = ({ profiles, user }) => {
     hobbies: "",
   });
 
-  const hobbiesFilterArray = filter.hobbies.split(",").map((hobby) => hobby.trim()).filter((elemhbb) => elemhbb !== "");
+  const isFilterEmpty = (filter: Filter) => {
+    return !filter.name && filter.age === 0 && !filter.sex && !filter.hobbies;
+  };
 
-  const filteredProfiles = profiles.filter((person) => {
-    return (
-      (filter.name === "" || person.name.includes(filter.name)) &&
-      (filter.age === 0 || person.age === filter.age) &&
-      (filter.sex === "" || person.sex === filter.sex) &&
-      (hobbiesFilterArray.length === 0 ||
-        hobbiesFilterArray.some((hobby) => person.hobbies.includes(hobby)))
-    );
-  });
+  const filteredProfiles = isFilterEmpty(filter)
+    ? profiles
+    : profiles.filter((person) => {
+      const hobbiesFilterArray = filter.hobbies.split(",").map((hobby) => hobby.trim()).filter((elemhbb) => elemhbb !== "");
+      return (
+        (filter.name === "" || person.name.includes(filter.name)) &&
+        (filter.age === 0 || person.age === filter.age) &&
+        (filter.sex === "" || person.sex === filter.sex) &&
+        (hobbiesFilterArray.length === 0 ||
+          hobbiesFilterArray.some((hobby) => person.hobbies.includes(hobby)))
+      );
+    });
+
+  const handleFilterChange = (name: string, value: string | number) => {
+    setFilter((prevFilter) => ({ ...prevFilter, [name]: value}));
+  };
 
   return (
     <>
       {cookiesOk && (
-        <div class="cont-filter">
+        <div class="cont-filter-page">
           <div class="cont-form cont-filter">
             <button
               class="button"
@@ -74,29 +79,27 @@ const FilterProfiles: FunctionComponent<Data> = ({ profiles, user }) => {
             <input
               type="text"
               placeholder="Name"
-              onBlur={(e) => setName(e.currentTarget.value)}
+              value={filter.name}
+              onInput={(e) => handleFilterChange('name', e.currentTarget.value)}
             />
             <input
               type="number"
               placeholder="Age"
-              onBlur={(e) => setAge(parseInt(e.currentTarget.value))}
+              value={filter.age || ""}
+              onInput={(e) => handleFilterChange('age', parseInt(e.currentTarget.value) || 0)}
             />
             <input
               type="text"
               placeholder="Sex"
-              onBlur={(e) => setSex(e.currentTarget.value)}
+              value={filter.sex}
+              onInput={(e) => handleFilterChange('sex', e.currentTarget.value)}
             />
             <input
               type="text"
               placeholder="Hobbies (comma separated)"
-              onBlur={(e) => setHobbies(e.currentTarget.value)}
+              value={filter.hobbies}
+              onInput={(e) => handleFilterChange('hobbies', e.currentTarget.value)}
             />
-            <button
-              class="button"
-              onClick={() => setFilter({ name, age, sex, hobbies })}
-            >
-              Filter
-            </button>
           </div>
           <div class="cont-filter-profiles">
             <div class="cont-all-profiles">

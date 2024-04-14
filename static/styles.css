@@ -22,7 +22,7 @@ body {
 
     0%,
     100% {
-        background: #ffc9cb;
+        background: #ff9194;
     }
 
     15% {
@@ -115,8 +115,7 @@ body {
     border: 1px solid var(--button-bg-color);
 }
 
-.cont-home,
-.cont-filter {
+.cont-home, .cont-filter-page {
     display: flex;
     flex-direction: column;
     align-items: center;

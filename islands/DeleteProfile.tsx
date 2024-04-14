@@ -20,7 +20,7 @@ const DeleteProfile: FunctionComponent<{ user: string }> = ({ user }) => {
       setDeleteSuccess(false);
     }
   };
-  
+
   return (
     <div>
       <h1>Delete Profile</h1>
@@ -29,7 +29,14 @@ const DeleteProfile: FunctionComponent<{ user: string }> = ({ user }) => {
         placeholder="Password"
         onBlur={(e) => setPassword(e.currentTarget.value)}
       />
-      <button class="button" onClick={fetchDeleteProfile}>Delete Profile</button>
+      <button class="button" onClick={fetchDeleteProfile}>
+        Delete Profile
+      </button>
+      {!deleteSuccess && (
+        <div>
+          <p>Failed to delete profile.</p>
+        </div>
+      )}
     </div>
   );
 };

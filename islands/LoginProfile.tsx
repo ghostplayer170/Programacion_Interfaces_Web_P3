@@ -4,13 +4,13 @@ import { FunctionComponent } from "preact";
 const LoginProfile: FunctionComponent = () => {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [loginSuccess, setLoginSuccess] = useState<boolean | null>(null); // null = no se ha intentado loguear
+  const [loginSuccess, setLoginSuccess] = useState<boolean | null>(null); 
   const [emptyFields, setEmptyFields] = useState<boolean>(false);
 
   const fetchLogin = async () => {
     if (name.trim() === "" || password.trim() === "") {
-      setLoginSuccess(null); // Resetear el estado de éxito de login
-      setEmptyFields(true); // Mostrar mensaje de campos vacíos
+      setLoginSuccess(null); 
+      setEmptyFields(true); 
       return;
     }
 
@@ -34,8 +34,8 @@ const LoginProfile: FunctionComponent = () => {
   };
 
   const handleCloseMessage = () => {
-    setEmptyFields(false); // Cerrar el diálogo de campos vacíos
-    setLoginSuccess(null); // Resetear el estado de éxito/fallo
+    setEmptyFields(false); 
+    setLoginSuccess(null); 
   };
 
   return (
